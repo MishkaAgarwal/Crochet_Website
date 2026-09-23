@@ -1,0 +1,24 @@
+{
+  "name": "Crochet Studio - Pricing & Project Hub",
+  "short_name": "CrochetStudio",
+  "description": "Artisanal crochet pricing calculator and project planner for crafters and handmade business owners.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FAF6EF",
+  "theme_color": "#8B68BA",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

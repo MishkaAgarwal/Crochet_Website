@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5EE"/>
+      <stop offset="100%" stop-color="#F3EBE0"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="50%" stop-color="#8B68BA"/>
+      <stop offset="100%" stop-color="#6E4D9E"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A3C9A8"/>
+      <stop offset="50%" stop-color="#7BAE7F"/>
+      <stop offset="100%" stop-color="#558B6E"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#5E4B75" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle -->
+  <rect x="24" y="24" width="464" height="464" rx="104" fill="url(#bgGrad)" stroke="#E5DAC9" stroke-width="6"/>
+
+  <!-- Decorative stitch border -->
+  <rect x="42" y="42" width="428" height="428" rx="88" fill="none" stroke="#84B082" stroke-width="3" stroke-dasharray="8 8" opacity="0.6"/>
+
+  <g filter="url(#softShadow)">
+    <!-- Yarn Ball Base -->
+    <circle cx="240" cy="275" r="140" fill="url(#purpleGrad)"/>
+    
+    <!-- Yarn strand curves (pastel green & lilac highlights) -->
+    <path d="M 130 250 Q 240 180 350 250" fill="none" stroke="#FAF5EE" stroke-width="10" stroke-linecap="round" opacity="0.85"/>
+    <path d="M 120 290 Q 240 370 360 280" fill="none" stroke="#C4B5FD" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 150 210 Q 260 300 320 380" fill="none" stroke="#A3C9A8" stroke-width="11" stroke-linecap="round"/>
+    <path d="M 180 160 Q 240 280 270 410" fill="none" stroke="#FAF5EE" stroke-width="9" stroke-linecap="round" opacity="0.9"/>
+    <path d="M 210 140 Q 340 240 290 390" fill="none" stroke="#7BAE7F" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 280 150 Q 150 280 210 395" fill="none" stroke="#DDD6FE" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 160 330 Q 230 230 330 330" fill="none" stroke="#FAF5EE" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Trailing yarn thread looping into heart/stitch -->
+    <path d="M 330 340 C 400 420 440 360 410 310 C 390 270 330 260 360 210" fill="none" stroke="url(#greenGrad)" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Crochet Hook piercing the ball -->
+    <g transform="rotate(-38 235 240)">
+      <!-- Hook shaft -->
+      <rect x="80" y="228" width="310" height="24" rx="12" fill="#EADBC8" stroke="#D1BEA8" stroke-width="3"/>
+      <!-- Soft ergonomic grip (pastel green) -->
+      <rect x="180" y="222" width="170" height="36" rx="18" fill="url(#greenGrad)"/>
+      <rect x="220" y="228" width="90" height="24" rx="12" fill="#FAF5EE" opacity="0.3"/>
+      <!-- Hook head & notch -->
+      <path d="M 80 228 C 65 228 52 235 52 240 C 52 245 65 252 80 252" fill="#D1BEA8"/>
+      <path d="M 62 233 C 50 233 44 240 48 245 C 52 248 60 246 68 241 Z" fill="#BFA78E"/>
+    </g>
+  </g>
+
+  <!-- Sparkles / Stitches in pastel green & purple -->
+  <path d="M 110 120 Q 120 120 120 110 Q 120 120 130 120 Q 120 120 120 130 Q 120 120 110 120 Z" fill="#8B68BA"/>
+  <path d="M 400 130 Q 412 130 412 118 Q 412 130 424 130 Q 412 130 412 142 Q 412 130 400 130 Z" fill="#7BAE7F"/>
+  <path d="M 390 410 Q 400 410 400 400 Q 400 410 410 410 Q 400 410 400 420 Q 400 410 390 410 Z" fill="#8B68BA"/>
+</svg>

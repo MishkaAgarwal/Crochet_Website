@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crochet Pricing Calculator</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf5f7;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .calculator {
+            max-width: 650px;
+            margin: auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b4a62;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #8b4a62;
+            font-size: 19px;
+            margin-top: 30px;
+            border-bottom: 1px solid #ead4dc;
+            padding-bottom: 8px;
+        }
+
+        label {
+            display: block;
+            margin-top: 16px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8b4a62;
+        }
+
+        .time-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .time-row div {
+            flex: 1;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 30px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background-color: #8b4a62;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #70394e;
+        }
+
+        .reset-button {
+            background-color: #ddd;
+            color: #444;
+            margin-top: 10px;
+        }
+
+        .reset-button:hover {
+            background-color: #ccc;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #f9edf1;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            margin-top: 0;
+            border: none;
+            text-align: center;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ead4dc;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .profit-row {
+            color: #8b4a62;
+            font-weight: bold;
+        }
+
+        .final-price {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .final-price p {
+            margin: 0;
+            color: #777;
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #8b4a62;
+            margin-top: 7px;
+        }
+
+        .error {
+            display: none;
+            color: #b23b3b;
+            background-color: #fbeaea;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="calculator">
+
+        <h1>Crochet Pricing Calculator</h1>
+
+        <p class="subtitle">
+            Calculate the estimated selling price of your handmade crochet product.
+        </p>
+
+
+        <!-- YARN SECTION -->
+
+        <h2>Yarn</h2>
+
+        <label for="yarnUsed">
+            Yarn Used (grams)
+        </label>
+
+        <input
+            type="number"
+            id="yarnUsed"
+            placeholder="Example: 35"
+            min="0"
+            step="0.1"
+        >
+
+        <label for="totalYarnWeight">
+            Total Yarn Weight (grams)
+        </label>
+
+        <input
+            type="number"
+            id="totalYarnWeight"
+            placeholder="Example: 100"
+            min="0"
+            step="0.1"
+        >
+
+        <label for="fullYarnPrice">
+            Price of Full Yarn (₹)
+        </label>
+
+        <input
+            type="number"
+            id="fullYarnPrice"
+            placeholder="Example: 150"
+            min="0"
+            step="0.01"
+        >
+
+        <div class="help-text">
+            Example: If a 100 g ball of yarn costs ₹150, enter 100 g and ₹150.
+        </div>
+
+
+        <!-- MATERIALS SECTION -->
+
+        <h2>Other Materials</h2>
+
+        <label for="otherMaterials">
+            Other Material Costs (₹)
+        </label>
+
+        <input
+            type="number"
+            id="otherMaterials"
+            placeholder="Example: 20"
+            min="0"
+            step="0.01"
+        >
+
+        <div class="help-text">
+            Stuffing, beads, buttons, keychain rings, embroidery thread, etc.
+        </div>
+
+
+        <!-- LABOUR SECTION -->
+
+        <h2>Making & Labour</h2>
+
+        <label>
+            Making Time
+        </label>
+
+        <div class="time-row">
+
+            <div>
+                <input
+                    type="number"
+                    id="hours"
+                    placeholder="Hours"
+                    min="0"
+                    step="1"
+                >
+            </div>
+
+            <div>
+                <input
+                    type="number"
+                    id="minutes"
+                    placeholder="Minutes"
+                    min="0"
+                    max="59"
+                    step="1"
+                >
+            </div>
+
+        </div>
+
+        <label for="labourRate">
+            Labour Rate per Hour (₹)
+        </label>
+
+        <input
+            type="number"
+            id="labourRate"
+            placeholder="Example: 100"
+            min="0"
+            step="0.01"
+        >
+
+
+        <!-- BUSINESS COSTS -->
+
+        <h2>Business Costs</h2>
+
+        <label for="packaging">
+            Packaging Cost (₹)
+        </label>
+
+        <input
+            type="number"
+            id="packaging"
+            placeholder="Example: 15"
+            min="0"
+            step="0.01"
+        >
+
+        <label for="overheads">
+            Overhead Costs (₹)
+        </label>
+
+        <input
+            type="number"
+            id="overheads"
+            placeholder="Example: 10"
+            min="0"
+            step="0.01"
+        >
+
+        <div class="help-text">
+            Website costs, electricity, tools, equipment, etc.
+        </div>
+
+
+        <!-- PROFIT SECTION -->
+
+        <h2>Desired Profit</h2>
+
+        <label for="profit">
+            Desired Profit (%)
+        </label>
+
+        <input
+            type="number"
+            id="profit"
+            placeholder="Example: 25"
+            min="0"
+            step="0.1"
+        >
+
+
+        <!-- BUTTONS -->
+
+        <button onclick="calculatePrice()">
+            Calculate Selling Price
+        </button>
+
+        <button
+            class="reset-button"
+            onclick="resetCalculator()">
+            Reset
+        </button>
+
+
+        <!-- ERROR -->
+
+        <div class="error" id="error"></div>
+
+
+        <!-- RESULT -->
+
+        <div class="result" id="result">
+
+            <h2>Price Breakdown</h2>
+
+            <div class="breakdown-row">
+                <span>Yarn Cost</span>
+                <span>₹<span id="showYarn">0.00</span></span>
+            </div>
+
+            <div class="breakdown-row">
+                <span>Other Materials</span>
+                <span>₹<span id="showMaterials">0.00</span></span>
+            </div>
+
+            <div class="breakdown-row">
+                <span>Labour Cost</span>
+                <span>₹<span id="showLabour">0.00</span></span>
+            </div>
+
+            <div class="breakdown-row">
+                <span>Packaging</span>
+                <span>₹<span id="showPackaging">0.00</span></span>
+            </div>
+
+            <div class="breakdown-row">
+                <span>Overheads</span>
+                <span>₹<span id="showOverheads">0.00</span></span>
+            </div>
+
+            <div class="breakdown-row total">
+                <span>Total Cost</span>
+                <span>₹<span id="showTotal">0.00</span></span>
+            </div>
+
+            <div class="breakdown-row profit-row">
+                <span>Profit</span>
+                <span>₹<span id="showProfit">0.00</span></span>
+            </div>
+
+
+            <div class="final-price">
+
+                <p>Estimated Selling Price</p>
+
+                <div class="price">
+                    ₹<span id="showPrice">0.00</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function calculatePrice() {
+
+            // Get values from the form
+
+            let yarnUsed =
+                Number(document.getElementById("yarnUsed").value);
+
+            let totalYarnWeight =
+                Number(document.getElementById("totalYarnWeight").value);
+
+            let fullYarnPrice =
+                Number(document.getElementById("fullYarnPrice").value);
+
+            let otherMaterials =
+                Number(document.getElementById("otherMaterials").value);
+
+            let hours =
+                Number(document.getElementById("hours").value);
+
+            let minutes =
+                Number(document.getElementById("minutes").value);
+
+            let labourRate =
+                Number(document.getElementById("labourRate").value);
+
+            let packaging =
+                Number(document.getElementById("packaging").value);
+
+            let overheads =
+                Number(document.getElementById("overheads").value);
+
+            let profitPercentage =
+                Number(document.getElementById("profit").value);
+
+
+            // Check required values
+
+            if (
+                yarnUsed < 0 ||
+                totalYarnWeight <= 0 ||
+                fullYarnPrice < 0 ||
+                otherMaterials < 0 ||
+                hours < 0 ||
+                minutes < 0 ||
+                minutes > 59 ||
+                labourRate < 0 ||
+                packaging < 0 ||
+                overheads < 0 ||
+                profitPercentage < 0
+            ) {
+
+                showError("Please enter valid values in all fields.");
+
+                return;
+            }
+
+
+            // Convert hours and minutes into total hours
+
+            let totalTime =
+                hours + (minutes / 60);
+
+
+            // Calculate the cost of the yarn used
+
+            let yarnCost =
+                (yarnUsed / totalYarnWeight) * fullYarnPrice;
+
+
+            // Calculate labour cost
+
+            let labourCost =
+                totalTime * labourRate;
+
+
+            // Calculate total cost before profit
+
+            let totalCost =
+                yarnCost +
+                otherMaterials +
+                labourCost +
+                packaging +
+                overheads;
+
+
+            // Calculate desired profit
+
+            let profit =
+                totalCost * (profitPercentage / 100);
+
+
+            // Calculate final selling price
+
+            let sellingPrice =
+                totalCost + profit;
+
+
+            // Display results
+
+            document.getElementById("showYarn").textContent =
+                yarnCost.toFixed(2);
+
+            document.getElementById("showMaterials").textContent =
+                otherMaterials.toFixed(2);
+
+            document.getElementById("showLabour").textContent =
+                labourCost.toFixed(2);
+
+            document.getElementById("showPackaging").textContent =
+                packaging.toFixed(2);
+
+            document.getElementById("showOverheads").textContent =
+                overheads.toFixed(2);
+
+            document.getElementById("showTotal").textContent =
+                totalCost.toFixed(2);
+
+            document.getElementById("showProfit").textContent =
+                profit.toFixed(2);
+
+            document.getElementById("showPrice").textContent =
+                sellingPrice.toFixed(2);
+
+
+            // Show the results
+
+            document.getElementById("error").style.display = "none";
+
+            document.getElementById("result").style.display = "block";
+        }
+
+
+        function showError(message) {
+
+            let error =
+                document.getElementById("error");
+
+            error.textContent = message;
+
+            error.style.display = "block";
+
+            document.getElementById("result").style.display = "none";
+        }
+
+
+        function resetCalculator() {
+
+            // Clear all input fields
+
+            document.getElementById("yarnUsed").value = "";
+            document.getElementById("totalYarnWeight").value = "";
+            document.getElementById("fullYarnPrice").value = "";
+            document.getElementById("otherMaterials").value = "";
+            document.getElementById("hours").value = "";
+            document.getElementById("minutes").value = "";
+            document.getElementById("labourRate").value = "";
+            document.getElementById("packaging").value = "";
+            document.getElementById("overheads").value = "";
+            document.getElementById("profit").value = "";
+
+            // Hide results and errors
+
+            document.getElementById("result").style.display = "none";
+            document.getElementById("error").style.display = "none";
+        }
+
+    </script>
+
+</body>
+
+</html>
